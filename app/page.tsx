@@ -107,7 +107,7 @@ export default function Home() {
             </p>
 
             <h1 className="mx-auto max-w-[760px] bg-gradient-to-br from-[#fff9e8] via-[#e1bf72] to-[#fffef7] bg-clip-text pb-3 text-[2.6rem] font-black leading-[1.05] tracking-[-0.05em] text-transparent sm:text-[4.6rem] lg:mx-0 lg:text-[5.8rem] xl:text-[6.5rem]">
-              The Completion of Our Aalim Journey
+              The Completion of Our Madrassah Journey
             </h1>
 
             <p className="mx-auto mt-4 max-w-[640px] text-[1.05rem] leading-8 text-[#f8edd2]/76 sm:text-[1.2rem] lg:mx-0">

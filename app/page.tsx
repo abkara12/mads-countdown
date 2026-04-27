@@ -205,31 +205,6 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.22, duration: 0.7 }}
-          className="mt-5 grid gap-3 sm:grid-cols-3 lg:mt-7"
-        >
-          <DetailCard
-            icon={<BookOpen size={20} />}
-            title="Lessons"
-            text="The pages, the effort, and the daily work that shaped the journey."
-          />
-
-          <DetailCard
-            icon={<Users size={20} />}
-            title="Brotherhood"
-            text="The classmates, memories, and moments that made the years unforgettable."
-          />
-
-          <DetailCard
-            icon={<Award size={20} />}
-            title="Jalsah"
-            text="The final gathering marking the end of one chapter and the start of the next."
-          />
-        </motion.div>
       </section>
     </main>
   );

@@ -137,16 +137,6 @@ export default function Home() {
               Years of effort, brotherhood, lessons and Qur’ān — now counting down to our Jalsah.
             </p>
 
-            <div className="mx-auto mt-5 max-w-[620px] rounded-[24px] border border-[#ead49a]/12 bg-[#fff8ea]/[0.05] p-4 text-center shadow-[0_16px_50px_rgba(0,0,0,0.22)] backdrop-blur-xl lg:mx-0 lg:text-left">
-              <p className="text-[0.7rem] font-bold uppercase tracking-[0.25em] text-[#d8c18a]/65">
-                A chapter written with effort
-              </p>
-              <p className="mt-2 text-sm leading-7 text-[#fff3d6]/80 sm:text-base">
-                From daily lessons to final memories — this countdown is for every
-                page, every sabaq, every correction, and every moment that made the
-                journey special.
-              </p>
-            </div>
           </motion.div>
 
           <motion.div

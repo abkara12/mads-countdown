@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import { CalendarDays, Sparkles, Crown, BookOpen } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CalendarDays, Crown, Share2 } from "lucide-react";
 
 const TARGET_DATE = new Date("2026-12-12T09:00:00+02:00");
 
@@ -29,24 +29,27 @@ function pad(num: number) {
 function TimeBlock({ value, label }: { value: number | string; label: string }) {
   return (
     <motion.div
-      whileHover={{ y: -4, scale: 1.015 }}
-      transition={{ duration: 0.25 }}
-      className="relative overflow-hidden rounded-[24px] border border-[#ead49a]/20 bg-gradient-to-b from-[#fff8ea]/[0.09] to-[#fff8ea]/[0.035] p-4 text-center shadow-[0_20px_70px_rgba(0,0,0,0.34)] backdrop-blur-2xl sm:p-5 lg:p-6"
+      animate={{
+        boxShadow: [
+          "0 0 0px rgba(217,183,111,0)",
+          "0 0 30px rgba(217,183,111,0.25)",
+          "0 0 0px rgba(217,183,111,0)",
+        ],
+      }}
+      transition={{ duration: 1.2, repeat: Infinity }}
+      className="relative overflow-hidden rounded-[24px] border border-[#ead49a]/20 bg-gradient-to-b from-[#fff8ea]/[0.09] to-[#fff8ea]/[0.035] p-4 text-center backdrop-blur-2xl"
     >
-      <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#f3d98b] to-transparent" />
-      <div className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-[#d9b76f]/10 blur-2xl" />
-
       <motion.div
         key={value}
-        initial={{ opacity: 0, y: 10, scale: 0.96 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.22 }}
-        className="text-[2.65rem] font-black leading-none tracking-[-0.065em] text-[#fff2c7] drop-shadow-[0_0_22px_rgba(217,183,111,0.28)] sm:text-[3.8rem] lg:text-[5.25rem]"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.2 }}
+        className="text-[2.6rem] font-black text-[#fff2c7] sm:text-[4rem] lg:text-[5.5rem]"
       >
         {value}
       </motion.div>
 
-      <p className="mt-2 text-[0.62rem] font-bold uppercase tracking-[0.26em] text-[#d9c17d]/90 sm:text-xs">
+      <p className="mt-2 text-xs uppercase tracking-widest text-[#d9c17d]">
         {label}
       </p>
     </motion.div>
@@ -70,94 +73,97 @@ export default function Home() {
     });
   }, []);
 
+  const share = () => {
+    const text = `Our Madrassah Jalsah Countdown 🔥\n\n${window.location.href}`;
+    const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank");
+  };
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#07110d] text-white">
+      
+      {/* BACKGROUND */}
       <div className="pointer-events-none fixed inset-0">
         <motion.div
-          animate={{ x: [0, 35, 0], y: [0, 20, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-1/2 top-[-260px] h-[620px] w-[620px] -translate-x-1/2 rounded-full bg-[#d9b76f]/20 blur-[140px]"
+          animate={{ x: [0, 40, 0], y: [0, 20, 0] }}
+          transition={{ duration: 10, repeat: Infinity }}
+          className="absolute left-1/2 top-[-260px] h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#d9b76f]/20 blur-[140px]"
         />
-        <motion.div
-          animate={{ x: [0, -30, 0], y: [0, -20, 0] }}
-          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[-260px] left-[-180px] h-[520px] w-[520px] rounded-full bg-[#0f6b4c]/35 blur-[140px]"
-        />
-        <div className="absolute right-[-220px] top-[28%] h-[520px] w-[520px] rounded-full bg-[#f4dfad]/10 blur-[140px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#07110d_82%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:58px_58px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#07110d_85%)]" />
       </div>
 
-      <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1450px] flex-col justify-center px-4 py-5 sm:px-8 lg:px-12">
-        <div className="grid gap-7 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-12 xl:gap-16">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-center lg:text-left"
-          >
-            <div className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full border border-[#ead49a]/20 bg-[#fff8ea]/[0.08] px-4 py-2 text-[0.7rem] font-semibold text-[#f3dfb1]/85 shadow-[0_0_40px_rgba(217,183,111,0.12)] backdrop-blur-xl sm:text-sm lg:mx-0">
-              <Crown size={14} className="text-[#e6c576]" />
-              Class of 2026
-            </div>
+      <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 text-center">
 
-            <p className="mb-3 text-[0.66rem] font-bold uppercase tracking-[0.35em] text-[#d9b76f]/90 sm:text-xs">
-              The Final Chapter
-            </p>
+        <AnimatePresence>
+          {timeLeft.finished ? (
+            /* 🎉 EVENT MODE */
+            <motion.div
+              key="done"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="space-y-6"
+            >
+              <h1 className="text-4xl font-black text-[#fff2c7] sm:text-6xl">
+                🎉 Jalsah Day Has Arrived
+              </h1>
 
-            <h1 className="mx-auto max-w-[760px] bg-gradient-to-br from-[#fff9e8] via-[#e1bf72] to-[#fffef7] bg-clip-text pb-3 text-[2.45rem] font-black leading-[1.05] tracking-[-0.055em] text-transparent sm:text-[4.35rem] lg:mx-0 lg:text-[5.55rem] xl:text-[6.25rem]">
-              The End of a Sacred Journey
-            </h1>
+              <p className="text-lg text-[#f8edd2]/80">
+                This is the moment we worked for.
+              </p>
+            </motion.div>
+          ) : (
+            /* COUNTDOWN MODE */
+            <motion.div
+              key="countdown"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="w-full max-w-[1100px]"
+            >
+              {/* HEADER */}
+              <div className="mb-8 space-y-3">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#ead49a]/20 bg-[#fff8ea]/[0.08] px-4 py-2 text-xs">
+                  <Crown size={14} />
+                  Class of 2026
+                </div>
 
-            <p className="mx-auto mt-3 max-w-[640px] text-[1rem] leading-7 text-[#f8edd2]/76 sm:text-[1.16rem] sm:leading-8 lg:mx-0">
-              Years of discipline, sacrifice and Qur’ān — all leading to one unforgettable Jalsah.
-            </p>
+                <h1 className="text-3xl font-black sm:text-5xl lg:text-6xl">
+                  The Completion of Our Hifdh Journey
+                </h1>
 
-            <div className="mx-auto mt-5 flex max-w-[620px] flex-col gap-3 sm:flex-row lg:mx-0">
-              <div className="flex items-center justify-center gap-2 rounded-2xl border border-[#ead49a]/12 bg-[#fff8ea]/[0.055] px-4 py-3 text-sm text-[#f8edd2]/75 backdrop-blur-xl">
-                <BookOpen size={16} className="text-[#e6c576]" />
-                Qur’ān • Brotherhood • Legacy
+                <p className="text-[#f8edd2]/70">
+                  The final countdown to our Jalsah.
+                </p>
               </div>
 
-              <div className="flex items-center justify-center gap-2 rounded-2xl border border-[#ead49a]/12 bg-[#fff8ea]/[0.055] px-4 py-3 text-sm text-[#f8edd2]/75 backdrop-blur-xl">
-                <Sparkles size={16} className="text-[#e6c576]" />
-                A moment we’ll never forget
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.12, duration: 0.7 }}
-            className="w-full"
-          >
-            <div className="relative rounded-[34px] border border-[#ead49a]/16 bg-[#fff8ea]/[0.045] p-3 shadow-[0_35px_100px_rgba(0,0,0,0.42)] backdrop-blur-2xl sm:p-5 lg:p-6">
-              <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[#f3d98b]/90 to-transparent" />
-
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              {/* TIMER */}
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                 <TimeBlock value={timeLeft.days} label="Days" />
                 <TimeBlock value={pad(timeLeft.hours)} label="Hours" />
                 <TimeBlock value={pad(timeLeft.minutes)} label="Minutes" />
                 <TimeBlock value={pad(timeLeft.seconds)} label="Seconds" />
               </div>
 
-              <div className="mt-7 rounded-[26px] border border-[#ead49a]/12 bg-black/10 p-5 text-center shadow-inner sm:p-6">
-                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#d9b76f]/15 text-[#e6c576] shadow-[0_0_35px_rgba(217,183,111,0.16)]">
-                  <CalendarDays size={22} />
-                </div>
-
-                <p className="text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#d8c18a]/65">
+              {/* DATE */}
+              <div className="mt-8 rounded-xl border border-[#ead49a]/10 bg-black/20 p-6">
+                <CalendarDays className="mx-auto mb-3" />
+                <p className="text-xs uppercase tracking-widest text-[#d8c18a]">
                   Jalsah Date
                 </p>
-
-                <p className="mt-2 text-lg font-semibold text-[#fff3d6] sm:text-2xl">
-                  {formattedDate}
-                </p>
+                <p className="mt-2 text-lg">{formattedDate}</p>
               </div>
-            </div>
-          </motion.div>
-        </div>
+
+              {/* SHARE */}
+              <button
+                onClick={share}
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#d9b76f] px-6 py-3 text-black font-semibold hover:scale-105 transition"
+              >
+                <Share2 size={16} />
+                Share Countdown
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
       </section>
     </main>
   );

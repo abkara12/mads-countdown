@@ -120,7 +120,7 @@ export default function Home() {
                 </div>
 
                 <p className="text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#d8c18a]/65">
-                  Jalsah
+                  Jalsah Date
                 </p>
 
                 <p className="mt-2 text-lg font-semibold text-[#fff3d6] sm:text-2xl">

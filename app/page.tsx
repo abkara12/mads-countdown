@@ -71,6 +71,7 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#07110d] text-white">
+      {/* BACKGROUND */}
       <div className="pointer-events-none fixed inset-0">
         <motion.div
           animate={{ x: [0, 35, 0], y: [0, 20, 0] }}
@@ -85,6 +86,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#07110d_82%)]" />
       </div>
 
+      {/* CONTENT */}
       <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1450px] flex-col justify-center px-4 py-5 sm:px-8 lg:px-12">
         <div className="grid gap-7 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-12 xl:gap-16">
 
@@ -105,11 +107,11 @@ export default function Home() {
             </p>
 
             <h1 className="mx-auto max-w-[760px] bg-gradient-to-br from-[#fff9e8] via-[#e1bf72] to-[#fffef7] bg-clip-text pb-3 text-[2.45rem] font-black leading-[1.05] tracking-[-0.055em] text-transparent sm:text-[4.35rem] lg:mx-0 lg:text-[5.55rem] xl:text-[6.25rem]">
-              The Completion of Our Hifdh Journey
+              The Completion of Our Aalim Journey
             </h1>
 
             <p className="mx-auto mt-3 max-w-[640px] text-[1rem] leading-7 text-[#f8edd2]/76 sm:text-[1.16rem] sm:leading-8 lg:mx-0">
-              Years of effort, discipline and Qur’ān — now culminating in our final Jalsah.
+              Years of sacrifice, kitaabs, discipline and effort — now culminating in our final Jalsah.
             </p>
           </motion.div>
 
@@ -120,8 +122,10 @@ export default function Home() {
             transition={{ delay: 0.12, duration: 0.7 }}
             className="w-full"
           >
-            <div className="rounded-[34px] border border-[#ead49a]/16 bg-[#fff8ea]/[0.045] p-3 shadow-[0_35px_100px_rgba(0,0,0,0.42)] backdrop-blur-2xl sm:p-5 lg:p-6">
+            {/* OUTER WRAPPER (NO BORDER NOW) */}
+            <div className="rounded-[34px] bg-[#fff8ea]/[0.045] p-3 shadow-[0_35px_100px_rgba(0,0,0,0.42)] backdrop-blur-2xl sm:p-5 lg:p-6">
 
+              {/* TIME BLOCKS */}
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <TimeBlock value={timeLeft.days} label="Days" />
                 <TimeBlock value={pad(timeLeft.hours)} label="Hours" />
@@ -129,7 +133,8 @@ export default function Home() {
                 <TimeBlock value={pad(timeLeft.seconds)} label="Seconds" />
               </div>
 
-              <div className="mt-7 rounded-[26px] border border-[#ead49a]/12 bg-black/10 p-5 text-center sm:p-6">
+              {/* JALSAH DATE (MORE SPACE ABOVE) */}
+              <div className="mt-10 rounded-[26px] border border-[#ead49a]/12 bg-black/10 p-5 text-center sm:mt-12 sm:p-6">
                 <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#d9b76f]/15 text-[#e6c576]">
                   <CalendarDays size={22} />
                 </div>

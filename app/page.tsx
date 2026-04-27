@@ -2,17 +2,9 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  CalendarDays,
-  Clock,
-  Sparkles,
-  BookOpen,
-  Users,
-  Award,
-} from "lucide-react";
+import { CalendarDays, Sparkles } from "lucide-react";
 
 const TARGET_DATE = new Date("2026-12-12T09:00:00+02:00");
-const START_DATE = new Date("2026-04-27T00:00:00+02:00");
 
 function getTimeLeft() {
   const diff = TARGET_DATE.getTime() - Date.now();
@@ -56,30 +48,6 @@ function TimeBlock({ value, label }: { value: number | string; label: string }) 
   );
 }
 
-function DetailCard({
-  icon,
-  title,
-  text,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  text: string;
-}) {
-  return (
-    <div className="rounded-[22px] border border-[#ead49a]/12 bg-[#fff8ea]/[0.05] p-4 text-left shadow-[0_14px_45px_rgba(0,0,0,0.22)] backdrop-blur-xl">
-      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-2xl bg-[#d9b76f]/15 text-[#e6c576]">
-        {icon}
-      </div>
-
-      <p className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-[#d8c18a]/65">
-        {title}
-      </p>
-
-      <p className="mt-1.5 text-sm leading-6 text-[#fff3d6]/85">{text}</p>
-    </div>
-  );
-}
-
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
 
@@ -96,12 +64,6 @@ export default function Home() {
       year: "numeric",
     });
   }, []);
-
-  const progress = useMemo(() => {
-    const total = TARGET_DATE.getTime() - START_DATE.getTime();
-    const passed = Date.now() - START_DATE.getTime();
-    return Math.min(100, Math.max(0, (passed / total) * 100));
-  }, [timeLeft]);
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#07110d] text-white">
@@ -136,7 +98,6 @@ export default function Home() {
             <p className="mx-auto mt-3 max-w-[620px] text-[0.98rem] leading-7 text-[#f8edd2]/75 sm:text-[1.15rem] sm:leading-8 lg:mx-0">
               Years of effort, brotherhood, lessons and Qur’ān — now counting down to our Jalsah.
             </p>
-
           </motion.div>
 
           <motion.div
@@ -153,44 +114,18 @@ export default function Home() {
                 <TimeBlock value={pad(timeLeft.seconds)} label="Seconds" />
               </div>
 
-              <div className="mt-4 grid gap-3 sm:grid-cols-[0.9fr_1.5fr]">
-                <div className="rounded-[22px] border border-[#ead49a]/10 bg-black/10 p-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#d9b76f]/15 text-[#e6c576]">
-                      <CalendarDays size={19} />
-                    </div>
-
-                    <div>
-                      <p className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-[#d8c18a]/65">
-                        Jalsah Date
-                      </p>
-                      <p className="mt-0.5 text-sm font-semibold text-[#fff3d6] sm:text-base">
-                        {formattedDate}
-                      </p>
-                    </div>
-                  </div>
+              <div className="mt-4 rounded-[24px] border border-[#ead49a]/10 bg-black/10 p-5 text-center sm:p-6">
+                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#d9b76f]/15 text-[#e6c576]">
+                  <CalendarDays size={22} />
                 </div>
 
-                <div className="rounded-[22px] border border-[#ead49a]/10 bg-black/10 p-4">
-                  <div className="mb-3 flex items-center justify-between text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[#d8c18a]/70 sm:text-xs">
-                    <span>Journey Progress</span>
-                    <span>{Math.round(progress)}%</span>
-                  </div>
+                <p className="text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#d8c18a]/65">
+                  Jalsah Date
+                </p>
 
-                  <div className="h-2.5 overflow-hidden rounded-full bg-[#fff8ea]/10">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${progress}%` }}
-                      transition={{ duration: 1.1, ease: "easeOut" }}
-                      className="h-full rounded-full bg-gradient-to-r from-[#8f7133] via-[#d9b76f] to-[#fff2bd]"
-                    />
-                  </div>
-
-                  <div className="mt-3 flex items-center gap-2 text-[0.72rem] text-[#f8edd2]/50 sm:text-sm">
-                    <Clock size={14} />
-                    <span>Every second is becoming part of the memory.</span>
-                  </div>
-                </div>
+                <p className="mt-2 text-lg font-semibold text-[#fff3d6] sm:text-2xl">
+                  {formattedDate}
+                </p>
               </div>
             </div>
           </motion.div>
